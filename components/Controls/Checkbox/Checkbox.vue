@@ -2,11 +2,11 @@
   <div class="checkbox">
     <input
       v-model="radioButtonValue"
-      class="checkbox__control"
-      type="checkbox"
       :checked="value"
       :name="name"
-    >
+      class="checkbox__control"
+      type="checkbox"
+    />
     <label class="checkbox__label" />
     <span class="checkbox__text">
       <slot />
@@ -15,7 +15,7 @@
 </template>
 
 <style lang="scss">
-@import "./Checkbox.scss";
+@import './Checkbox.scss';
 </style>
 
 <script>
@@ -36,10 +36,10 @@ export default {
   },
   computed: {
     radioButtonValue: {
-      get () {
+      get() {
         return this.value
       },
-      set () {
+      set() {
         this.$emit('change', this.label)
       }
     }

@@ -1,28 +1,40 @@
+<!--  eslint-disable vue/valid-template-root -->
 <template>
   <button
-    v-if="type=='button'"
-    class="button"
-    :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null, disabled === true ? 'button_disabled' : null]"
+    v-if="type == 'button'"
+    :class="[
+      theme ? `button_theme_${theme}` : null,
+      full ? `button_full` : null,
+      disabled === true ? 'button_disabled' : null
+    ]"
     @click="onClickButton"
+    class="button"
   >
     <Unlock v-if="icon === 'unlock'" class="button__icon" />
     <slot />
   </button>
   <a
-    v-else-if="type==='link'"
+    v-else-if="type === 'link'"
     :href="url"
+    :class="[
+      theme ? `button_theme_${theme}` : null,
+      full ? `button_full` : null
+    ]"
     target="_blank"
     class="button"
-    :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null]"
-  >    <Unlock v-if="icon === 'unlock'" class="button__icon" />
+  >
+    <Unlock v-if="icon === 'unlock'" class="button__icon" />
 
     <slot />
   </a>
   <nuxt-link
-    v-else-if="type==='router'"
+    v-else-if="type === 'router'"
     :to="localePath(url)"
+    :class="[
+      theme ? `button_theme_${theme}` : null,
+      full ? `button_full` : null
+    ]"
     class="button"
-    :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null]"
   >
     <Unlock v-if="icon === 'unlock'" class="button__icon" />
     <slot />
@@ -30,7 +42,7 @@
 </template>
 
 <style lang="scss">
-@import "./Button";
+@import './Button';
 </style>
 
 <script>
@@ -71,9 +83,9 @@ export default {
   data: () => {
     return {}
   },
-  mounted () {},
+  mounted() {},
   methods: {
-    onClickButton (event) {
+    onClickButton(event) {
       if (this.disabled !== true) {
         this.click()
       } else {
