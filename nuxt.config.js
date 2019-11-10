@@ -23,11 +23,15 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~/assets/css/reset.css',
+    '~/assets/css/feather.css',
+    '~/assets/scss/main.scss'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~plugins/i18n', '~plugins/v-tooltip', '~plugins/filters'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -38,14 +42,58 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    '@nuxtjs/style-resources',
+    'nuxt-svg-loader',
+    '@nuxtjs/axios',
+    'nuxt-clipboard2',
+    [
+      '@nuxtjs/moment',
+      {
+        locales: [
+          'de',
+          'ru',
+          'fr',
+          'tr',
+          'es',
+          'nl',
+          'hu',
+          'ja',
+          'fi',
+          'vi',
+          'sk',
+          'zh-cn'
+        ],
+        defaultLocale: 'en'
+      }
+    ],
+    [
+      'nuxt-i18n',
+      {
+        vueI18nLoader: true,
+        defaultLocale: 'en',
+        locales: [
+          {
+            name: 'English',
+            code: 'en',
+            iso: 'en-US',
+            flag: 'us',
+            file: 'en-US.js'
+          }
+        ]
+      }
+    ]
+  ],
+  styleResources: {
+    scss: ['~/assets/scss/_app.variables.scss']
+  },
+  axios: {
+    baseURL: 'https://api.nknx.nkn.org/'
+  },
   /*
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+    vendor: ['v-tooltip']
   }
 }

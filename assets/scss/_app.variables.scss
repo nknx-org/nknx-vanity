@@ -1,0 +1,91 @@
+/*========== Custom Variable ==========*/
+// App Global Font Size
+$html-fz: 16px;
+
+// App Font Family
+$html-font-family: "Inter", Arial;
+
+// Media Size
+$desktop-size-xs: 320px;
+$desktop-size-sm: 600px;
+$desktop-size-md: 960px;
+$desktop-size-lg: 1200px;
+$desktop-size-llg: 1380px;
+$desktop-size-xl: 1900px;
+
+//Default Colors
+$black: #000;
+$white: #fff;
+$dark: #343743;
+$base: #e5e5e5;
+$grey-light: #f7f8fb;
+$grey-dark: #adb2c5;
+$grey-darkest: #646b83;
+
+//Theme colors
+$primary: #1c2a63 !default;
+$secondary: #0096ff !default;
+$violet: #7261a3 !default;
+$error: #c53131 !default;
+$success: #31c574 !default;
+$alert: #FFC933 !default;
+$success-neon: #3FFF96;
+
+$fw-light: 300;
+$fw-normal: 400;
+$fw-semi-bold: 500;
+$fw-bold: 700;
+
+// App Text Scale
+$text-default: $grey-darkest;
+$text-light: $grey-dark;
+
+// Setting for the Typography elements.
+$fz-xs: 0.75rem !default; // 12px
+$fz-sm: 0.8125rem !default; // 13px
+$fz-md: 0.875rem !default; // 14px
+$fz-base: 1rem !default; // Assumes the browser default, typically `16px`
+$fz-lg: 1.125rem !default; // 18px
+$fz-llg: 1.5rem !default; // 24px;
+
+// Setting For Heading Element
+$heading-font: "Rubik", Arial;
+$h1-fz: 3.375rem !default; // 54px
+$h2-fz: 2.25rem !default; // 36px
+$h3-fz: 1.5rem !default; // 24px
+$h4-fz: 1.25rem !default; // 20px
+$h5-fz: 1.25rem !default; // 20px
+$h6-fz: 1.125rem !default; // 18px
+
+//Shadows
+$shadow-1: 2px 12px 40px rgba(114, 97, 163, 0.56);
+$shadow-2: 2px 12px 40px rgba(0, 0, 0, 0.24);
+// Gradient Theme Color
+$gradient-1: linear-gradient(90.78deg, #0b163c 17.75%, #303159 84.46%);
+$gradient-2: linear-gradient(319.62deg, #0b163c 0.79%, #303159 96.67%);
+
+// Transitions
+$transition-1: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-2: 0.3s ease-in-out all;
+$transition-3: 0.4s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+
+// Settings for the `<body>` element.
+$body-bg: $white;
+$body-color: $text-default;
+$body-font: $html-font-family;
+
+// Card
+$card-br: 8px;
+$card-bg-default: $white;
+$card-shadow: $shadow-1;
+$card-border: 1px solid #ececec;
+
+// App Spacing
+$padding-micro: 8px;
+$padding-small: 12px;
+$padding-default: 16px;
+$padding-lg: 18px;
+$padding-normal: 24px;
+$padding-medium: 32px;
+$padding-big: 40px;
+$padding-max: 64px;
