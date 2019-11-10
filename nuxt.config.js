@@ -31,7 +31,12 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/i18n', '~plugins/v-tooltip', '~plugins/filters'],
+  plugins: [
+    '~plugins/i18n',
+    '~plugins/v-tooltip',
+    '~plugins/filters',
+    { src: '~plugins/nknVanity', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
