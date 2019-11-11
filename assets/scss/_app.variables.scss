@@ -70,12 +70,12 @@ $transition-2: 0.3s ease-in-out all;
 $transition-3: 0.4s cubic-bezier(0.25, -0.25, 0.75, 1.25);
 
 // Settings for the `<body>` element.
-$body-bg: $white;
+$body-bg: $primary;
 $body-color: $text-default;
 $body-font: $html-font-family;
 
 // Card
-$card-br: 8px;
+$card-br: 5px;
 $card-bg-default: $white;
 $card-shadow: $shadow-1;
 $card-border: 1px solid #ececec;

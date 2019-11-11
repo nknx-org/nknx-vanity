@@ -3,8 +3,8 @@
     <UserInput
       :running="running"
       :cores="cores"
-      @start="startGen"
-      @stop="stopGen"
+      @startGen="startGen"
+      @stopGen="stopGen"
       @input-change="setInput"
     ></UserInput>
     <Statistics
@@ -76,9 +76,10 @@ export default {
       this.incrementCounter = result.attempts
       this.time = this.$moment().unix()
       const wallet = JSON.parse(result.wallet)
+      console.log(wallet)
+
       this.result.address = wallet.Address
       this.status = 'Address found'
-      console.log(wallet)
     },
     clearResult() {
       this.result.address = ''

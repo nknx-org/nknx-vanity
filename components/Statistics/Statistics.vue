@@ -1,41 +1,50 @@
 <template>
-  <div class="panel">
-    <div>
-      Difficulty: <span v-text="formatNum(difficulty)" class="output">1</span>
-    </div>
-    <div>
-      Generated:
-      <span
-        v-text="formatNum(count) + (count === 1 ? ' address' : ' addresses')"
-        class="output"
-        >0 addresses</span
-      >
-      >
-    </div>
-    <div>
-      50% probability:
-      <span v-text="probability50" class="output">0 addresses</span>
-    </div>
-    <div>
-      Speed: <span v-text="speed + ' addr/s'" class="output">0 addr/s</span>
-    </div>
-    <div>Status: <span v-text="status" class="output">Waiting</span></div>
+  <Card width="half">
+    <div class="panel">
+      <div>
+        Difficulty: <span v-text="formatNum(difficulty)" class="output">1</span>
+      </div>
+      <div>
+        Generated:
+        <span
+          v-text="formatNum(count) + (count === 1 ? ' address' : ' addresses')"
+          class="output"
+          >0 addresses</span
+        >
+        >
+      </div>
+      <div>
+        50% probability:
+        <span v-text="probability50" class="output">0 addresses</span>
+      </div>
+      <div>
+        Speed: <span v-text="speed + ' addr/s'" class="output">0 addr/s</span>
+      </div>
+      <div>Status: <span v-text="status" class="output">Waiting</span></div>
 
-    <!--Probability-->
-    <div class="probability">
-      <div :style="'width:' + probability + '%'" class="probability-bar"></div>
+      <!--Probability-->
+      <div class="probability">
+        <div
+          :style="'width:' + probability + '%'"
+          class="probability-bar"
+        ></div>
+      </div>
+      <div class="percentage">
+        <h4 v-text="probability + '%'">0%</h4>
+        <div>Probability</div>
+      </div>
     </div>
-    <div class="percentage">
-      <h4 v-text="probability + '%'">0%</h4>
-      <div>Probability</div>
-    </div>
-  </div>
+  </Card>
 </template>
 
 <script>
 import nknVanity from '~/plugins/nknVanity'
+import Card from '~/components/Card/Card'
 
 export default {
+  components: {
+    Card
+  },
   props: {
     name: {
       type: String,

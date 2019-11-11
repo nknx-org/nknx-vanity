@@ -1,6 +1,6 @@
 .button {
   padding: $padding-lg $padding-big;
-  border-radius: 100em;
+  border-radius: $card-br;
   text-align: center;
   transition: $transition-1;
   cursor: pointer !important;
@@ -67,28 +67,41 @@
       }
     }
 
+    &_error {
+      color: $white;
+      background: $error;
+
+      &:hover {
+        background: lighten($error, 10%);
+      }
+
+      &:active {
+        background: darken($error, 10%);
+      }
+    }
+
     &_secondary {
       color: $white;
       background: $secondary;
 
-        &:hover {
-          background: lighten($secondary, 10%);
+      &:hover {
+        background: lighten($secondary, 10%);
+      }
+
+      &:active {
+        background: darken($secondary, 10%);
+      }
+
+      .button__icon {
+        path {
+          fill: $white;
         }
 
-        &:active {
-          background: darken($secondary, 10%);
-        }
-
-        .button__icon {
-          path {
-            fill: $white;
-        }
-
-          color: $white;
+        color: $white;
       }
     }
 
-    &_text{
+    &_text {
       color: $grey-darkest;
       border: none;
       background: transparent;
@@ -102,7 +115,6 @@
         color: $primary;
       }
     }
-
 
     &_ghost {
       color: $white;
@@ -122,7 +134,7 @@
       }
     }
 
-    &_ghost-secondary{
+    &_ghost-secondary {
       color: $secondary;
       border: 2px solid $secondary;
       background: transparent;

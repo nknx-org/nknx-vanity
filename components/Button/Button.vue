@@ -10,7 +10,6 @@
     @click="onClickButton"
     class="button"
   >
-    <Unlock v-if="icon === 'unlock'" class="button__icon" />
     <slot />
   </button>
   <a
@@ -23,8 +22,6 @@
     target="_blank"
     class="button"
   >
-    <Unlock v-if="icon === 'unlock'" class="button__icon" />
-
     <slot />
   </a>
   <nuxt-link
@@ -36,7 +33,6 @@
     ]"
     class="button"
   >
-    <Unlock v-if="icon === 'unlock'" class="button__icon" />
     <slot />
   </nuxt-link>
 </template>
@@ -46,10 +42,8 @@
 </style>
 
 <script>
-import Unlock from '~/assets/icons/unlock.svg'
-
 export default {
-  components: { Unlock },
+  components: {},
   props: {
     theme: {
       type: String,
