@@ -18,12 +18,14 @@
     }
   },
   "dependencies": {
+    "bs58": "^4.0.1",
     "file-saver": "^2.0.2",
     "moment": "^2.24.0",
     "nkn-wallet": "^0.4.7",
     "nuxt-clipboard2": "^0.2.1",
     "qrcode.vue": "^1.7.0",
-    "v-tooltip": "^2.0.2"
+    "v-tooltip": "^2.0.2",
+    "worker-loader": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.8.0",

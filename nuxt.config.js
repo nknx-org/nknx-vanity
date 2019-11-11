@@ -25,6 +25,7 @@ export default {
    */
   css: [
     '~/assets/css/reset.css',
+    '~/assets/css/grid.css',
     '~/assets/css/feather.css',
     '~/assets/scss/main.scss'
   ],
@@ -35,7 +36,7 @@ export default {
     '~plugins/i18n',
     '~plugins/v-tooltip',
     '~plugins/filters',
-    { src: '~plugins/nknVanity', ssr: false }
+    'plugins/nknVanity'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -99,6 +100,19 @@ export default {
    ** Build configuration
    */
   build: {
-    vendor: ['v-tooltip']
+    vendor: ['v-tooltip'],
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          test: /nknVanityWorker\.js$/,
+          loader: 'worker-loader',
+          exclude: /node_modules/,
+          options: {
+            inline: true,
+            name: 'nknVanityWorker.js'
+          }
+        })
+      }
+    }
   }
 }

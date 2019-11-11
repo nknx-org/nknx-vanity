@@ -1,6 +1,8 @@
 .card-container {
+  max-width: 1140px;
   display: grid;
   grid-gap: $padding-normal;
   grid-template-columns: repeat(2, 1fr);
   padding: $padding-default;
+  margin: 0 auto;
 }
