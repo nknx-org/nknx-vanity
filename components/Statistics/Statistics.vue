@@ -88,8 +88,11 @@ export default {
     time() {
       const incr = this.incrementCounter
       const time = this.time
+      if (time === 0) {
+        this.count = 0
+      }
       this.count += incr
-      this.speed = time !== 0 ? (incr / time).toFixed(2) : 0
+      this.speed = time !== 0 ? (incr / time).toFixed(0) : 0
     }
   },
   created() {},

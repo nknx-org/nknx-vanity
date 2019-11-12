@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       running: false,
-      status: 'Waiting',
+      status: 'waiting',
       workers: [],
       threads: 4,
       cores: 0,
@@ -60,8 +60,20 @@ export default {
     window.benchmark = this.benchmark
   },
   methods: {
+    countCores() {
+      // Estimate number of cores on machine
+      let cores = 0
+      try {
+        cores = parseInt(navigator.hardwareConcurrency, 10)
+      } catch (err) {
+        console.error(err)
+      }
+      if (cores) {
+        this.cores = cores
+        this.threads = this.cores
+      }
+    },
     setInput(inputType, value) {
-      // eslint-disable-next-line default-case
       switch (inputType) {
         case 'name':
           this.input.name = value
@@ -76,83 +88,6 @@ export default {
           this.input.suffix = value
       }
     },
-    displayResult(result) {
-      const wallet = JSON.parse(result.wallet)
-      const reducer = (accumulator, currentValue) => accumulator + currentValue
-      const totalAttempts = this.totalAttempts
-      this.incrementCounter = totalAttempts.length
-        ? totalAttempts.reduce(reducer)
-        : result.attempts
-      this.time = performance.now()
-      this.result.address = wallet.Address
-      this.status = 'Address found'
-
-      console.log(wallet)
-    },
-    clearResult() {
-      this.result.address = ''
-      this.incrementCounter = 0
-      this.time = 0
-    },
-    /**
-     * Create missing workers, remove the unwanted ones.
-     */
-    initWorkers() {
-      const self = this
-      if (this.workers.length === this.threads) {
-        return
-      }
-      // Remove unwanted workers
-      if (this.workers.length > this.threads) {
-        for (let w = this.threads; w < this.workers.length; w++) {
-          this.workers[w].terminate()
-        }
-        this.workers = this.workers.slice(0, this.threads)
-        return
-      }
-      // Create workers
-      for (let w = this.workers.length; w < this.threads; w++) {
-        try {
-          this.workers[w] = new Worker()
-          this.workers[w].onmessage = (event) => {
-            self.parseWorkerMessage(event.data)
-          }
-        } catch (err) {
-          this.error = err
-          this.status = 'Error'
-          console.error(this.error)
-          break
-        }
-      }
-    },
-    parseWorkerMessage(wallet) {
-      if (wallet.error) {
-        this.stopGen()
-        this.error = wallet.error
-        this.status = 'Error'
-        console.error(this.error)
-        return
-      }
-      if (wallet.wallet) {
-        this.stopGen()
-        return this.displayResult(wallet)
-      }
-      this.totalAttempts.push(wallet.attempts)
-
-      if (this.totalAttempts.length === 1) {
-        this.startCollectTime = performance.now()
-      }
-
-      if (this.totalAttempts.length === 10) {
-        const reducer = (accumulator, currentValue) =>
-          accumulator + currentValue
-        this.incrementCounter = this.totalAttempts.reduce(reducer)
-
-        this.totalAttempts = []
-        this.time = (performance.now() - this.startCollectTime) / 1000 // to seconds
-        this.startCollectTime = 0
-      }
-    },
     startGen() {
       if (!window.Worker) {
         this.error = 'workers_unsupported'
@@ -163,29 +98,101 @@ export default {
       for (let w = 0; w < this.workers.length; w++) {
         this.workers[w].postMessage(this.input)
       }
-      this.status = 'Running'
+      this.status = 'running'
       this.firstTick = performance.now()
     },
     stopGen() {
       this.running = false
-      this.status = 'Stopped'
+      this.status = 'stopped'
       for (let i = 0; i < this.workers.length; i++) {
         this.workers[i].terminate()
       }
       this.workers = []
       this.initWorkers()
     },
-    countCores() {
-      // Estimate number of cores on machine
-      let cores = 0
-      try {
-        cores = parseInt(navigator.hardwareConcurrency, 10)
-      } catch (err) {
-        console.error(err)
+    parseWorkerMessage(message) {
+      const { error, wallet, attempts } = message
+      const totalAttemptsLength = this.totalAttempts.length
+      if (error) {
+        this.stopGen()
+        this.error = error
+        this.status = 'error'
+        console.error(this.error)
+        return
       }
-      if (cores) {
-        this.cores = cores
-        this.threads = this.cores
+      if (wallet) {
+        this.stopGen()
+        return this.displayResult(message)
+      }
+      this.totalAttempts.push(attempts)
+
+      if (totalAttemptsLength === 1) {
+        this.startCollectTime = performance.now()
+      }
+
+      if (totalAttemptsLength === this.workers.length) {
+        this.countIncrements(0)
+        this.totalAttempts = []
+        this.time = (performance.now() - this.startCollectTime) / 1000 // to seconds
+        this.startCollectTime = 0
+      }
+    },
+    displayResult(result) {
+      const wallet = JSON.parse(result.wallet)
+      const currentAttempts = result.attempts
+      this.countIncrements(currentAttempts)
+      this.time = performance.now()
+      this.result.address = wallet.Address
+      this.status = 'addressFound'
+
+      console.log(wallet)
+    },
+    clearResult() {
+      this.result.address = ''
+      this.incrementCounter = 0
+      this.time = 0
+      this.firstTick = 0
+      this.totalAttempts = []
+    },
+    countIncrements(currentAttempts) {
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
+      const totalAttempts = this.totalAttempts
+      this.incrementCounter = totalAttempts.length
+        ? totalAttempts.reduce(reducer)
+        : currentAttempts
+    },
+    /**
+     * Create missing workers, remove the unwanted ones.
+     */
+    initWorkers() {
+      const self = this
+      const workers = this.workers
+      const threads = this.threads
+
+      if (workers.length === threads) {
+        return
+      }
+      // Remove unwanted workers
+      if (workers.length > threads) {
+        for (let w = threads; w < workers.length; w++) {
+          workers[w].terminate()
+        }
+        this.workers = workers.slice(0, threads)
+        return
+      }
+      // Create workers
+      for (let w = workers.length; w < threads; w++) {
+        try {
+          this.workers[w] = new Worker()
+          this.workers[w].onmessage = (event) => {
+            self.parseWorkerMessage(event.data)
+          }
+        } catch (err) {
+          this.error = err
+          this.status = 'error'
+          console.error(this.error)
+          break
+        }
       }
     },
     benchmark(max) {

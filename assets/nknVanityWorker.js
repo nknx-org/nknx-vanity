@@ -1,43 +1,7 @@
 const nknWallet = require('nkn-wallet')
-const bs58 = require('bs58')
+const { isValidName } = require('@/plugins/nknVanity').default
+
 const step = 100
-
-function getAddressSample(name, isSuffix) {
-  const addressTemplate = 'XXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg'
-  const addressSlice = addressTemplate.slice(name.length)
-  let address = 'NKN'
-
-  if (!isSuffix) {
-    address += name
-    address += addressSlice
-  } else {
-    address += addressSlice
-    address += name
-  }
-
-  return address
-}
-
-function isValidName(name, isSuffix) {
-  const minHex = '02b825000000000000000000000000000000000000000000000000'
-  const maxHex = '02b825ffffffffffffffffffffffffffffffffffffffffffffffff'
-  const address = getAddressSample(name, isSuffix)
-  let bytes = 0
-
-  try {
-    bytes = bs58.decode(address)
-  } catch (err) {
-    return false
-  }
-
-  const addressHex = bytes.toString('hex')
-
-  const minInt = parseInt(minHex, 16)
-  const maxInt = parseInt(maxHex, 16)
-  const addressInt = parseInt(addressHex, 16)
-
-  return addressInt >= minInt && addressInt <= maxInt
-}
 
 function getRandomWallet(password) {
   if (!password) {
@@ -50,7 +14,7 @@ function getRandomWallet(password) {
 function isValidVanityWallet(address, name, isSuffix) {
   if (!isValidName(name, isSuffix)) {
     throw new Error(
-      'Your name contains one of banned symbols (0, o, l, I) or is more than 33 char length'
+      'Your name have non-base58 character or is more than 33 char length'
     )
   }
 
