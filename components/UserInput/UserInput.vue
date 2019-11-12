@@ -73,6 +73,14 @@
       <h4 v-text="threads"></h4>
       <span>threads</span>
       <span v-if="threads === cores">(recommended)</span>
+      <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+        <span>Prefix</span>
+        <label class="switch">
+          <input v-model="suffix" :disabled="running" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span>Suffix</span>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-sm-12">
@@ -122,8 +130,8 @@ export default {
       threads: 4,
       name: '',
       error: false,
-      password: '',
-      addressTemplate: 'XXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg'
+      suffix: false,
+      password: ''
     }
   },
   computed: {
@@ -142,11 +150,9 @@ export default {
       if (this.inputError) {
         return 'N/A'
       }
-      const chosen = this.name
-      let random = 'NKN' + chosen
-      random += this.addressTemplate.slice(chosen.length)
-
-      return { random, chosen }
+      const name = this.name
+      const random = nknVanity.getAddressSample(name, this.suffix)
+      return { random, name }
     }
   },
   watch: {
@@ -158,6 +164,9 @@ export default {
     },
     threads() {
       this.$emit('input-change', 'threads', this.threads)
+    },
+    suffix() {
+      this.$emit('input-change', 'suffix', this.suffix)
     }
   },
   methods: {

@@ -2,14 +2,26 @@ const nknWallet = require('nkn-wallet')
 const bs58 = require('bs58')
 const step = 100
 
-function isValidName(name) {
+function getAddressSample(name, isSuffix) {
   const addressTemplate = 'XXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg'
+  const addressSlice = addressTemplate.slice(name.length)
+  let address = 'NKN'
+
+  if (!isSuffix) {
+    address += name
+    address += addressSlice
+  } else {
+    address += addressSlice
+    address += name
+  }
+
+  return address
+}
+
+function isValidName(name, isSuffix) {
   const minHex = '02b825000000000000000000000000000000000000000000000000'
   const maxHex = '02b825ffffffffffffffffffffffffffffffffffffffffffffffff'
-
-  let address = 'NKN' + name
-  address += addressTemplate.slice(name.length)
-
+  const address = getAddressSample(name, isSuffix)
   let bytes = 0
 
   try {
@@ -35,14 +47,20 @@ function getRandomWallet(password) {
   return wallet
 }
 
-function isValidVanityWallet(address, name) {
-  if (!isValidName(name)) {
+function isValidVanityWallet(address, name, isSuffix) {
+  if (!isValidName(name, isSuffix)) {
     throw new Error(
       'Your name contains one of banned symbols (0, o, l, I) or is more than 33 char length'
     )
   }
 
-  const regexp = new RegExp(`NKN${name}`)
+  let regexp = ''
+
+  if (!isSuffix) {
+    regexp = new RegExp(`NKN${name}`)
+  } else {
+    regexp = new RegExp(`${name}` + '$')
+  }
 
   if (String(address).match(regexp) === null) {
     return false
@@ -50,7 +68,7 @@ function isValidVanityWallet(address, name) {
   return true
 }
 
-function getVanityWallet(password, name, cb) {
+function getVanityWallet(password, name, isSuffix, cb) {
   let attempts = 1
 
   if (!name) {
@@ -63,7 +81,7 @@ function getVanityWallet(password, name, cb) {
 
   let wallet = getRandomWallet(password)
 
-  while (!isValidVanityWallet(wallet.address, name)) {
+  while (!isValidVanityWallet(wallet.address, name, isSuffix)) {
     if (attempts >= step) {
       // eslint-disable-next-line standard/no-callback-literal
       cb({ attempts })
@@ -81,7 +99,7 @@ onmessage = function(event) {
   const input = event.data
 
   try {
-    getVanityWallet(input.password, input.name, (message) =>
+    getVanityWallet(input.password, input.name, input.suffix, (message) =>
       postMessage(message)
     )
   } catch (err) {

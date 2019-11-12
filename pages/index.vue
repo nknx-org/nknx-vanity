@@ -38,7 +38,7 @@ export default {
       threads: 4,
       cores: 0,
       result: { address: '' },
-      input: { name: '', password: '' },
+      input: { name: '', password: '', suffix: false },
       firstTick: null,
       error: null,
       incrementCounter: 0,
@@ -71,6 +71,9 @@ export default {
           break
         case 'password':
           this.input.password = value
+          break
+        case 'suffix':
+          this.input.suffix = value
       }
     },
     displayResult(result) {
@@ -88,7 +91,7 @@ export default {
     },
     clearResult() {
       this.result.address = ''
-      this.incrementCounter = -1
+      this.incrementCounter = 0
       this.time = 0
     },
     /**
@@ -187,7 +190,7 @@ export default {
     },
     benchmark(max) {
       max = max || 10000
-      const step = 500
+      const step = 100
       const worker = new Worker()
       let attempts = 0
       const times = []
@@ -224,7 +227,7 @@ export default {
           worker.terminate()
         }
       }
-      const input = { name: 'XXX', password: 'password' }
+      const input = { name: 'XXX', password: 'password', suffix: false }
       console.log('Starting benchmark with 1 core...')
       worker.postMessage(input)
     }

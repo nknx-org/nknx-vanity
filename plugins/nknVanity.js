@@ -1,14 +1,26 @@
 const moment = require('moment')
 const bs58 = require('bs58')
 
-function isValidName(name) {
+function getAddressSample(name, isSuffix) {
   const addressTemplate = 'XXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg'
+  const addressSlice = addressTemplate.slice(name.length)
+  let address = 'NKN'
+
+  if (!isSuffix) {
+    address += name
+    address += addressSlice
+  } else {
+    address += addressSlice
+    address += name
+  }
+
+  return address
+}
+
+function isValidName(name, isSuffix) {
   const minHex = '02b825000000000000000000000000000000000000000000000000'
   const maxHex = '02b825ffffffffffffffffffffffffffffffffffffffffffffffff'
-
-  let address = 'NKN' + name
-  address += addressTemplate.slice(name.length)
-
+  const address = getAddressSample(name, isSuffix)
   let bytes = 0
 
   try {
@@ -45,7 +57,8 @@ function getVanityEtc(vanitySpeed, name, currentCount) {
 const nknVanity = {
   isValidName,
   getVanityEtc,
-  getVanityOutcomes
+  getVanityOutcomes,
+  getAddressSample
 }
 
 export default nknVanity
