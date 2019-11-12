@@ -42,7 +42,8 @@ export default {
       firstTick: null,
       error: null,
       incrementCounter: 0,
-      time: 0
+      time: 0,
+      totalAttempts: []
     }
   },
   watch: {
@@ -73,13 +74,17 @@ export default {
       }
     },
     displayResult(result) {
-      this.incrementCounter = result.attempts
-      this.time = this.$moment().unix()
       const wallet = JSON.parse(result.wallet)
-      console.log(wallet)
-
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
+      const totalAttempts = this.totalAttempts
+      this.incrementCounter = totalAttempts.length
+        ? totalAttempts.reduce(reducer)
+        : result.attempts
+      this.time = performance.now()
       this.result.address = wallet.Address
       this.status = 'Address found'
+
+      console.log(wallet)
     },
     clearResult() {
       this.result.address = ''
@@ -129,8 +134,21 @@ export default {
         this.stopGen()
         return this.displayResult(wallet)
       }
-      this.incrementCounter = wallet.attempts
-      this.time = this.$moment().unix()
+      this.totalAttempts.push(wallet.attempts)
+
+      if (this.totalAttempts.length === 1) {
+        this.startCollectTime = performance.now()
+      }
+
+      if (this.totalAttempts.length === 10) {
+        const reducer = (accumulator, currentValue) =>
+          accumulator + currentValue
+        this.incrementCounter = this.totalAttempts.reduce(reducer)
+
+        this.totalAttempts = []
+        this.time = (performance.now() - this.startCollectTime) / 1000 // to seconds
+        this.startCollectTime = 0
+      }
     },
     startGen() {
       if (!window.Worker) {
@@ -206,7 +224,7 @@ export default {
           worker.terminate()
         }
       }
-      const input = { name: 'XX', password: 'password' }
+      const input = { name: 'XXX', password: 'password' }
       console.log('Starting benchmark with 1 core...')
       worker.postMessage(input)
     }

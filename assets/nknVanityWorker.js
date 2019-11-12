@@ -1,7 +1,6 @@
 const nknWallet = require('nkn-wallet')
 const bs58 = require('bs58')
-
-const step = 500
+const step = 100
 
 function isValidName(name) {
   const addressTemplate = 'XXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg'
@@ -68,11 +67,11 @@ function getVanityWallet(password, name, cb) {
     if (attempts >= step) {
       // eslint-disable-next-line standard/no-callback-literal
       cb({ attempts })
-
       attempts = 0
     }
+    attempts += 1
+
     wallet = getRandomWallet(password)
-    attempts++
   }
   // eslint-disable-next-line standard/no-callback-literal
   cb({ wallet: wallet.toJSON(), attempts })
