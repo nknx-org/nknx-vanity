@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="user-input__example">
-      {{ $t('example') }}
+      {{ $t('example') }}:
       <span v-text="example.random"></span>
     </div>
     <div class="user-input__config">
