@@ -9,6 +9,10 @@
     display: flex;
     font-weight: $fw-bold;
     font-size: $fz-lg;
+
+    &:last-child{
+      align-items: center;
+    }
   }
 
   &__output{
@@ -21,6 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: $padding-normal;
 
     &-wrapper{
       background: $base;

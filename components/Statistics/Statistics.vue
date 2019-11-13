@@ -22,6 +22,7 @@
 
       <!--Probability-->
       <div class="statistics__item">
+        {{ $t('probability') }}:
         <div class="statistics__probability">
           <div class="statistics__probability-wrapper">
             <div
