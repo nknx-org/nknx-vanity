@@ -30,7 +30,7 @@
     &-wrapper{
       background: $base;
       height: 26px;
-      width: 85%;
+      width: 80%;
       border-radius: $card-br;
     }
 
@@ -42,8 +42,8 @@
     }
 
     &-percentage{
-      width: 10%;
-      margin-left: $padding-normal;
+      width: 15%;
+      margin-left: $padding-default;
       font-weight: normal;
     }
   }
