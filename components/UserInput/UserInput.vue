@@ -1,5 +1,5 @@
 <template>
-  <Card width="half">
+  <Card width="half" class="user-input">
     <div :class="['error-text', inputError ? 'error-text_visible' : null]">
       {{ $t('genErrorDescr') }}
     </div>
@@ -49,37 +49,57 @@
         </label>
       </div>
     </div>
-    <div class="example hide-prerender">
-      E.g.&nbsp;
-      <span class="monospace">
-        <span v-text="example.random"></span>
-      </span>
+    <div class="user-input__example">
+      {{ $t('example') }}
+      <span v-text="example.random"></span>
     </div>
-    <div class="threads hide-prerender">
-      <input
-        @click="threads--"
-        :disabled="running || threads <= 1"
-        type="button"
-        class="square-btn button-large"
-        value="-"
-      />
-      <input
-        @click="threads++"
-        :disabled="running"
-        type="button"
-        class="square-btn arrow button-large"
-        value="+"
-      />
-      <h4 v-text="threads"></h4>
-      <span>threads</span>
-      <span v-if="threads === cores">(recommended)</span>
-      <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-        <span>Prefix</span>
-        <label class="switch">
-          <input v-model="suffix" :disabled="running" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-        <span>Suffix</span>
+    <div class="user-input__config">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+          <div class="user-input__threads">
+            <input
+              @click="threads--"
+              :disabled="running || threads <= 1"
+              :class="
+                threads <= 1 || running
+                  ? 'user-input__threads-control_disabled'
+                  : ''
+              "
+              type="button"
+              class="user-input__threads-control"
+              value="-"
+            />
+            <input
+              @click="threads++"
+              :disabled="running"
+              :class="running ? 'user-input__threads-control_disabled' : ''"
+              type="button"
+              class="user-input__threads-control"
+              value="+"
+            />
+            <span class="user-input__threads-descr"
+              >{{ threads }} {{ $t('threads') }}
+            </span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+          <div class="user-input__suffix">
+            <span>{{ $t('prefix') }}</span>
+            <label class="user-input__suffix-switch">
+              <input
+                v-model="suffix"
+                :disabled="running"
+                type="checkbox"
+                class="user-input__suffix-control"
+              />
+              <span
+                :class="running ? 'user-input__suffix-slider_disabled' : ''"
+                class="user-input__suffix-slider"
+              ></span>
+            </label>
+            <span>{{ $t('suffix') }}</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -104,6 +124,10 @@
     </div>
   </Card>
 </template>
+
+<style lang="scss">
+@import './UserInput.scss';
+</style>
 
 <script>
 import nknVanity from '~/plugins/nknVanity'

@@ -1,0 +1,109 @@
+.user-input {
+  &__example {
+    color: $grey-dark;
+    margin-top: $padding-micro;
+    margin-bottom: $padding-normal;
+  }
+
+  &__config {
+    margin-bottom: $padding-normal;
+  }
+
+  &__suffix {
+    display: flex;
+    align-items: center;
+
+    &-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 32px;
+      margin: 0 $padding-micro;
+    }
+
+    &-control {
+      visibility: hidden;
+
+      &:focus + .user-input__suffix-slider {
+        box-shadow: 0 0 1px $primary;
+      }
+
+      &:checked + .user-input__suffix-slider:before {
+        transform: translateX(16px);
+      }
+    }
+
+    &-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $success;
+      transition: $transition-1;
+      border-radius: $card-br;
+
+      &_disabled {
+        background: $base !important;
+        cursor: not-allowed;
+        color: $dark;
+      }
+
+      &:before {
+        position: absolute;
+        border-radius: $card-br;
+        content: '';
+        height: 24px;
+        width: 24px;
+        left: 4px;
+        bottom: 4px;
+        background-color: $white;
+        transition: $transition-1;
+        z-index: 2;
+      }
+    }
+  }
+
+  &__threads {
+    display: flex;
+    align-items: center;
+
+    &-descr {
+      margin-left: $padding-micro;
+    }
+
+    &-control {
+      height: 32px;
+      width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $success;
+      border: none;
+      color: $white;
+      border-radius: $card-br;
+      transition: $transition-1;
+      cursor: pointer;
+      outline: none;
+
+      &_disabled {
+        background: $base !important;
+        cursor: not-allowed;
+        color: $dark;
+      }
+
+      &:hover {
+        background: lighten($success, 10%);
+      }
+
+      &:active {
+        background: darken($success, 10%);
+      }
+
+      &:not(:last-of-type) {
+        margin-right: $padding-micro;
+      }
+    }
+  }
+}
