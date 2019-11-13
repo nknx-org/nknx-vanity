@@ -154,6 +154,23 @@ a {
   &__input {
     position: relative;
     box-sizing: border-box;
+
+    &-action {
+      position: absolute;
+      right: $padding-default;
+      top: 23px;
+      cursor: pointer;
+      transition: $transition-1;
+      background: inherit;
+
+      &:hover {
+        color: $primary;
+      }
+
+      &:active {
+        color: $secondary;
+      }
+    }
   }
 
   &__label {

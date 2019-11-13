@@ -17,9 +17,10 @@
           />
           <div class="form__input">
             <input
-              :placeholder="'placeholder'"
+              :placeholder="$t('enterWalletName')"
               v-model="name"
               :disabled="running"
+              :class="inputError ? 'form__controller_error' : null"
               class="form__controller"
               type="text"
             />
@@ -39,11 +40,18 @@
           />
           <div class="form__input">
             <input
-              :placeholder="'password'"
+              :placeholder="$t('enterWalletPassword')"
               v-model="password"
               :disabled="running"
+              :type="!passwordVisible ? 'password' : 'text'"
               class="form__controller"
-              type="text"
+            />
+            <span
+              :class="[
+                'form__input-action',
+                passwordVisible ? 'fe fe-eye-off' : 'fe fe-eye'
+              ]"
+              @click="togglePasswordVisible"
             />
           </div>
         </label>
@@ -155,7 +163,8 @@ export default {
       name: '',
       error: false,
       suffix: false,
-      password: ''
+      password: '',
+      passwordVisible: false
     }
   },
   computed: {
@@ -194,6 +203,9 @@ export default {
     }
   },
   methods: {
+    togglePasswordVisible() {
+      this.passwordVisible = !this.passwordVisible
+    },
     startGen() {
       if (!this.running && !this.inputError && !this.error) {
         this.$emit('startGen')
