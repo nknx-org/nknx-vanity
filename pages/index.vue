@@ -43,7 +43,8 @@ export default {
       error: null,
       incrementCounter: 0,
       time: 0,
-      totalAttempts: []
+      totalAttempts: [],
+      startCollectTime: 0
     }
   },
   watch: {
@@ -54,6 +55,7 @@ export default {
     }
   },
   created() {
+    this.startCollectTime = this.$moment().valueOf()
     this.countCores()
     this.initWorkers()
     // eslint-disable-next-line nuxt/no-globals-in-created
@@ -70,7 +72,6 @@ export default {
       }
       if (cores) {
         this.cores = cores
-        this.threads = this.cores
       }
     },
     setInput(inputType, value) {
@@ -112,7 +113,6 @@ export default {
     },
     parseWorkerMessage(message) {
       const { error, wallet, attempts } = message
-      const totalAttemptsLength = this.totalAttempts.length
       if (error) {
         this.stopGen()
         this.error = error
@@ -126,15 +126,17 @@ export default {
       }
       this.totalAttempts.push(attempts)
 
-      if (totalAttemptsLength === 1) {
-        this.startCollectTime = performance.now()
-      }
+      const totalAttemptsLength = this.totalAttempts.length
 
-      if (totalAttemptsLength === this.workers.length) {
+      if (totalAttemptsLength === this.threads) {
         this.countIncrements(0)
         this.totalAttempts = []
-        this.time = (performance.now() - this.startCollectTime) / 1000 // to seconds
-        this.startCollectTime = 0
+        const start = this.startCollectTime
+        const now = this.$moment().valueOf()
+        this.time = this.$moment
+          .duration(this.$moment(now).diff(this.$moment(start)))
+          .asSeconds()
+        this.startCollectTime = this.$moment().valueOf()
       }
     },
     displayResult(result) {
@@ -166,22 +168,21 @@ export default {
      */
     initWorkers() {
       const self = this
-      const workers = this.workers
       const threads = this.threads
 
-      if (workers.length === threads) {
+      if (this.workers.length === threads) {
         return
       }
       // Remove unwanted workers
-      if (workers.length > threads) {
-        for (let w = threads; w < workers.length; w++) {
-          workers[w].terminate()
+      if (this.workers.length > threads) {
+        for (let w = threads; w < this.workers.length; w++) {
+          this.workers[w].terminate()
         }
-        this.workers = workers.slice(0, threads)
+        this.workers = this.workers.slice(0, threads)
         return
       }
       // Create workers
-      for (let w = workers.length; w < threads; w++) {
+      for (let w = this.workers.length; w < threads; w++) {
         try {
           this.workers[w] = new Worker()
           this.workers[w].onmessage = (event) => {
@@ -197,7 +198,7 @@ export default {
     },
     benchmark(max) {
       max = max || 10000
-      const step = 100
+      const step = 500
       const worker = new Worker()
       let attempts = 0
       const times = []

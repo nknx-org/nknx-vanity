@@ -87,6 +87,24 @@
             />
             <span class="user-input__threads-descr"
               >{{ threads }} {{ $t('threads') }}
+              <span
+                v-if="threads === cores"
+                v-tooltip="{
+                  content: $t('threadsRecommendedTooltip'),
+                  placement: 'top-center',
+                  offset: 5
+                }"
+                class="form__info fe fe-info"
+              />
+              <span
+                v-if="threads > cores"
+                v-tooltip="{
+                  content: $t('threadsWarningTooltip'),
+                  placement: 'top-center',
+                  offset: 5
+                }"
+                class="form__info form__info_warning fe fe-alert-circle"
+              />
             </span>
           </div>
         </div>
