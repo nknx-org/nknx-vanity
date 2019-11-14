@@ -197,8 +197,8 @@ export default {
       }
     },
     benchmark(max) {
-      max = max || 10000
-      const step = 500
+      max = max || 2000
+      const step = 100
       const worker = new Worker()
       let attempts = 0
       const times = []
