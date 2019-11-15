@@ -1,39 +1,35 @@
 <template>
-  <Card width="half">
-    <div class="statistics">
-      <div class="statistics__item">
-        {{ $t('difficulty') }}:
-        <span v-text="formatNum(difficulty)" class="statistics__output">1</span>
-      </div>
-      <div class="statistics__item">
-        {{ $t('generated') }}:
-        <span class="statistics__output"
-          >{{ formatNum(count) }} {{ $t('addresses') }}</span
-        >
-      </div>
-      <div class="statistics__item">
-        {{ $t('speed') }}:
-        <span class="statistics__output">{{ speed }} {{ $t('addr/s') }}</span>
-      </div>
-      <div class="statistics__item">
-        {{ $t('status') }}:
-        <span class="statistics__output">{{ $t(status) }}</span>
-      </div>
+  <Card width="half" class="statistics">
+    <div class="statistics__item">
+      {{ $t('difficulty') }}:
+      <span v-text="formatNum(difficulty)" class="statistics__output">1</span>
+    </div>
+    <div class="statistics__item">
+      {{ $t('generated') }}:
+      <span class="statistics__output"
+        >{{ formatNum(count) }} {{ $t('addresses') }}</span
+      >
+    </div>
+    <div class="statistics__item">
+      {{ $t('speed') }}:
+      <span class="statistics__output">{{ speed }} {{ $t('addr/s') }}</span>
+    </div>
+    <div class="statistics__item">
+      {{ $t('status') }}:
+      <span class="statistics__output">{{ $t(status) }}</span>
+    </div>
 
-      <!--Probability-->
-      <div class="statistics__item">
-        {{ $t('probability') }}:
-        <div class="statistics__probability">
-          <div class="statistics__probability-wrapper">
-            <div
-              :style="'width:' + probability + '%'"
-              class="statistics__probability-bar"
-            ></div>
-          </div>
-          <div class="statistics__probability-percentage">
-            {{ probability }}%
-          </div>
+    <!--Probability-->
+    <div class="statistics__item">
+      {{ $t('probability') }}:
+      <div class="statistics__probability">
+        <div class="statistics__probability-wrapper">
+          <div
+            :style="'width:' + probability + '%'"
+            class="statistics__probability-bar"
+          ></div>
         </div>
+        <div class="statistics__probability-percentage">{{ probability }}%</div>
       </div>
     </div>
   </Card>

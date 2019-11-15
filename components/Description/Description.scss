@@ -10,6 +10,10 @@
     margin: $padding-default 0 $padding-lg;
     overflow-x: hidden;
     text-overflow: ellipsis;
+
+    @include size-xs {
+      font-size: $fz-md;
+    }
   }
 
   &__link{

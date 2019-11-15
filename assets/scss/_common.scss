@@ -181,6 +181,14 @@ a {
     &:not(:last-of-type) {
       margin-bottom: $padding-default;
     }
+
+    @include size-sm {
+      margin-top: $padding-default;
+    }
+
+    @include size-xs {
+      font-size: $fz-md;
+    }
   }
 
   &__controller {
@@ -199,6 +207,10 @@ a {
     resize: none;
     margin-top: $padding-micro;
     position: relative;
+
+    @include size-xs {
+      font-size: $fz-md;
+    }
 
     &_error {
       border-color: $error !important;

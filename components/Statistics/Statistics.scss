@@ -13,6 +13,20 @@
     &:last-child{
       align-items: center;
     }
+
+    @include size-md {
+      &:not(:last-child){
+        margin-bottom: $padding-default;
+      }
+    }
+
+    @include size-xs {
+      font-size: $fz-md;
+
+      &:not(:last-child){
+        margin-bottom: $padding-small;
+      }
+    }
   }
 
   &__output{
@@ -32,6 +46,10 @@
       height: 26px;
       width: 80%;
       border-radius: $card-br;
+
+      @include size-xs {
+        width: 70%;
+      }
     }
 
     &-bar{
@@ -42,9 +60,13 @@
     }
 
     &-percentage{
-      width: 15%;
+      width: 25%;
       margin-left: $padding-default;
       font-weight: normal;
+
+      @include size-xs {
+        width: 70%;
+      }
     }
   }
 }

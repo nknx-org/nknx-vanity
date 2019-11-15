@@ -124,7 +124,7 @@
       display: block;
       text-decoration: none;
       opacity: 0.75;
-      font-size: $fz-xs;
+      font-size: $fz-md;
       transition: $transition-1;
 
       @include min-size-md {
@@ -158,7 +158,7 @@
 
     &-item {
       opacity: 0.75;
-      font-size: $fz-xs;
+      font-size: $fz-md;
       width: 100%;
 
       &:not(:last-child) {

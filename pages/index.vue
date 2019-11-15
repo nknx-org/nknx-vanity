@@ -160,8 +160,6 @@ export default {
       this.result.address = wallet.Address
       this.result.pk = pk
       this.status = 'addressFound'
-
-      console.log(wallet)
     },
     clearResult() {
       this.result.address = ''

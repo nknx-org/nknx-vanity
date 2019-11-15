@@ -3,10 +3,18 @@
     color: $grey-dark;
     margin-top: $padding-micro;
     margin-bottom: $padding-normal;
+
+    @include size-xs {
+      font-size: $fz-xs;
+    }
   }
 
   &__config {
     margin-bottom: $padding-normal;
+
+    @include size-xs {
+      font-size: $fz-md;
+    }
   }
 
   &__suffix {
@@ -65,9 +73,19 @@
     }
   }
 
+  &__button{
+    @include size-xs {
+      margin-top: $padding-default;
+    }
+  }
+
   &__threads {
     display: flex;
     align-items: center;
+
+    @include size-xs {
+      margin-bottom: $padding-default;
+    }
 
     &-recommended{
       font-size: $fz-sm;

@@ -4,7 +4,7 @@
       {{ $t('genErrorDescr') }}
     </div>
     <div class="row">
-      <div class="col-lg-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <label class="form__label">
           {{ $t('walletName') }}
           <span
@@ -27,7 +27,7 @@
           </div>
         </label>
       </div>
-      <div class="col-lg-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <label class="form__label">
           {{ $t('walletPassword') }}
           <span
@@ -63,7 +63,7 @@
     </div>
     <div class="user-input__config">
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="user-input__threads">
             <input
               @click="threads--"
@@ -108,7 +108,7 @@
             </span>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="user-input__suffix">
             <span>{{ $t('prefix') }}</span>
             <label class="user-input__suffix-switch">
@@ -129,21 +129,23 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-6">
         <Button
           :click="startGen"
           :disabled="isReady"
           :full="true"
           theme="success"
+          class="user-input__button"
           >{{ $t('generate') }}</Button
         >
       </div>
-      <div class="col-lg-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-6">
         <Button
           :click="stopGen"
           :full="true"
           :disabled="!running"
           theme="error"
+          class="user-input__button"
           >{{ $t('stop') }}</Button
         >
       </div>

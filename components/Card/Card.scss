@@ -17,4 +17,12 @@
   &_border {
     border: 1px solid #e0e0e0;
   }
+
+  @include size-md {
+    grid-column: span 2;
+  }
+
+  @include size-sm {
+    padding: $padding-default;
+  }
 }
