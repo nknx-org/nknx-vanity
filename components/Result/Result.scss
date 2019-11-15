@@ -1,0 +1,36 @@
+.result{
+
+  display: flex;
+  align-items: center;
+
+  &__qr{
+
+    &-placeholder{
+      height: 100px;
+      width: 100px;
+      background: $base;
+    }
+
+    &-code{
+      display: block !important;
+    }
+  }
+
+  &__info{
+    margin-left: $padding-default;
+    font-size: $fz-lg;
+    flex: 1;
+
+    &-heading{
+      font-weight: $fw-bold;
+      margin-right: $padding-micro;
+    }
+
+    &-item{
+      &:not(:last-child){
+        margin-bottom: $padding-default;
+      }
+    }
+  }
+
+}

@@ -23,8 +23,8 @@
     "moment": "^2.24.0",
     "nkn-wallet": "^0.4.7",
     "nuxt-clipboard2": "^0.2.1",
-    "qrcode.vue": "^1.7.0",
     "v-tooltip": "^2.0.2",
+    "vue-qr": "^2.2.1",
     "worker-loader": "^2.0.0"
   },
   "devDependencies": {

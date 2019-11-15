@@ -56,7 +56,7 @@ function getVanityWallet(password, name, isSuffix, cb) {
     wallet = getRandomWallet(password)
   }
   // eslint-disable-next-line standard/no-callback-literal
-  cb({ wallet: wallet.toJSON(), attempts })
+  cb({ wallet: wallet.toJSON(), pk: wallet.getSeed(), attempts })
 }
 
 onmessage = function(event) {

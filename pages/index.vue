@@ -14,6 +14,7 @@
       :incrementCounter="incrementCounter"
       :time="time"
     ></Statistics>
+    <Result :result="result" />
   </CardContainer>
 </template>
 
@@ -23,12 +24,14 @@ import Worker from '~/assets/nknVanityWorker'
 import CardContainer from '~/components/CardContainer/CardContainer'
 import UserInput from '~/components/UserInput/UserInput'
 import Statistics from '~/components/Statistics/Statistics'
+import Result from '~/components/Result/Result'
 
 export default {
   components: {
     CardContainer,
     UserInput,
-    Statistics
+    Statistics,
+    Result
   },
   data() {
     return {
@@ -37,7 +40,7 @@ export default {
       workers: [],
       threads: 4,
       cores: 0,
-      result: { address: '' },
+      result: { address: '', wallet: {}, pk: '' },
       input: { name: '', password: '', suffix: false },
       firstTick: null,
       error: null,
@@ -141,10 +144,13 @@ export default {
     },
     displayResult(result) {
       const wallet = JSON.parse(result.wallet)
+      const { pk } = result
       const currentAttempts = result.attempts
       this.countIncrements(currentAttempts)
       this.time = performance.now()
+      this.result.wallet = wallet
       this.result.address = wallet.Address
+      this.result.pk = pk
       this.status = 'addressFound'
 
       console.log(wallet)
