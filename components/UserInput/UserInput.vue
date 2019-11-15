@@ -94,7 +94,7 @@
                   placement: 'top-center',
                   offset: 5
                 }"
-                class="form__info fe fe-info"
+                class="form__info form__info_recommend fe fe-alert-octagon"
               />
               <span
                 v-if="threads > cores"
@@ -103,7 +103,7 @@
                   placement: 'top-center',
                   offset: 5
                 }"
-                class="form__info form__info_warning fe fe-alert-circle"
+                class="form__info form__info_warning fe fe-alert-octagon"
               />
             </span>
           </div>

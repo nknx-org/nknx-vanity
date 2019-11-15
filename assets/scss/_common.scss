@@ -226,6 +226,10 @@ a {
     color: $secondary;
 
     &_warning{
+      color: $error;
+    }
+
+    &_recommend{
       color: $alert;
     }
   }
