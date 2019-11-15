@@ -19,7 +19,7 @@
     @include min-size-md {
       max-width: $desktop-size-lg;
       margin: 0 auto;
-      padding: $padding-normal 0;
+      padding: $padding-medium 0;
     }
   }
 
@@ -93,7 +93,6 @@
     display: grid;
     grid-gap: $padding-default;
     grid-template-columns: repeat(2, 1fr);
-    margin-top: $padding-medium;
 
     @include min-size-md {
       grid-template-columns: repeat(4, 1fr);
@@ -152,7 +151,6 @@
 
     @include min-size-md {
       padding-top: 0;
-      margin-top: 76px;
       border: none;
     }
 
