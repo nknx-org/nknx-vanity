@@ -1,21 +1,24 @@
 <template>
-  <CardContainer>
-    <UserInput
-      :running="running"
-      :cores="cores"
-      @startGen="startGen"
-      @stopGen="stopGen"
-      @input-change="setInput"
-    ></UserInput>
-    <Statistics
-      :name="input.name"
-      :status="status"
-      :first-tick="firstTick"
-      :incrementCounter="incrementCounter"
-      :time="time"
-    ></Statistics>
-    <Result :result="result" />
-  </CardContainer>
+  <div>
+    <CardContainer>
+      <UserInput
+        :running="running"
+        :cores="cores"
+        @startGen="startGen"
+        @stopGen="stopGen"
+        @input-change="setInput"
+      ></UserInput>
+      <Statistics
+        :name="input.name"
+        :status="status"
+        :first-tick="firstTick"
+        :incrementCounter="incrementCounter"
+        :time="time"
+      ></Statistics>
+      <Result :result="result" />
+    </CardContainer>
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -25,13 +28,15 @@ import CardContainer from '~/components/CardContainer/CardContainer'
 import UserInput from '~/components/UserInput/UserInput'
 import Statistics from '~/components/Statistics/Statistics'
 import Result from '~/components/Result/Result'
+import Footer from '~/components/Footer/Footer'
 
 export default {
   components: {
     CardContainer,
     UserInput,
     Statistics,
-    Result
+    Result,
+    Footer
   },
   data() {
     return {
