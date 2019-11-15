@@ -12,7 +12,7 @@
     </div>
     <div class="statistics__item">
       {{ $t('speed') }}:
-      <span class="statistics__output">{{ speed }} {{ $t('addr/s') }}</span>
+      <span class="statistics__output">{{ speed }} {{ $t('addrPerSec') }}</span>
     </div>
     <div class="statistics__item">
       {{ $t('status') }}:

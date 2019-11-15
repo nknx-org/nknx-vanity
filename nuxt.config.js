@@ -84,17 +84,16 @@ export default {
     [
       'nuxt-i18n',
       {
-        vueI18nLoader: true,
         defaultLocale: 'en',
         locales: [
           {
-            name: 'English',
             code: 'en',
             iso: 'en-US',
-            flag: 'us',
             file: 'en-US.js'
           }
-        ]
+        ],
+        lazy: true,
+        langDir: 'lang/'
       }
     ]
   ],
