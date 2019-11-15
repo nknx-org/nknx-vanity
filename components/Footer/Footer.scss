@@ -19,7 +19,7 @@
     @include min-size-md {
       max-width: $desktop-size-lg;
       margin: 0 auto;
-      padding: 56px 0;
+      padding: $padding-normal 0;
     }
   }
 
