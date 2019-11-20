@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <CardContainer>
       <Description />
       <UserInput
@@ -31,6 +32,7 @@ import Statistics from '~/components/Statistics/Statistics'
 import Result from '~/components/Result/Result'
 import Footer from '~/components/Footer/Footer'
 import Description from '~/components/Description/Description'
+import Header from '~/components/Header/Header'
 
 export default {
   components: {
@@ -39,7 +41,8 @@ export default {
     Statistics,
     Result,
     Footer,
-    Description
+    Description,
+    Header
   },
   data() {
     return {
