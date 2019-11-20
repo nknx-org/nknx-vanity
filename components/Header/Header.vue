@@ -2,6 +2,7 @@
   <header class="header">
     <div class="header__title">{{ $t('getCustomNknWalletAddress') }}</div>
     <div class="header__container">
+      <span class="header__prefix">NKN</span>
       <ul class="header__list">
         <li v-for="item in items" :key="item" class="header__list-item">
           {{ item }}
@@ -23,9 +24,9 @@ export default {
     return {
       items: [
         'NKNXXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg',
-        'NKNChrisGKct2cZuhSGW6xqiqeFVd5nJtAzg',
-        'NKNSEXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg',
-        'NKNLamboGKct2cZuhSGW6xqiqeFVd5nJtAzg'
+        'NKNChrisLhnz4KMf1Q4HmzJuvFWUYxdToQDa',
+        'NKNSEXD4SLqpAJV4f1WxK14yNESaAAPVGHCA',
+        'NKNLambonq1ikpj3Z5MxNjqNqgZBu7764ijq'
       ]
     }
   }
