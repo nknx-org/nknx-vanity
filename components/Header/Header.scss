@@ -45,7 +45,7 @@
 
     @include size-md {
       font-size: $h3-fz;
-      height: 34px;
+      height: 33px;
     }
 
     @include size-sm {
@@ -55,7 +55,7 @@
 
     @include size-xs {
       font-size: $fz-sm;
-      height: 23px;
+      height: 24px;
     }
   }
 
@@ -75,7 +75,7 @@
       }
 
       @include size-md {
-        line-height: 34px;
+        line-height: 33px;
       }
 
       @include size-sm {
