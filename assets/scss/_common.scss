@@ -17,6 +17,12 @@ a {
   color: inherit;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 6px;
@@ -231,22 +237,22 @@ a {
     }
   }
 
-  &__info{
+  &__info {
     cursor: pointer;
     position: relative;
     top: 1px;
     color: $secondary;
 
-    &_warning{
+    &_warning {
       color: $error;
     }
 
-    &_recommend{
+    &_recommend {
       color: $alert;
     }
   }
 
-  &__wrapper{
+  &__wrapper {
     display: flex;
     justify-content: space-between;
   }
