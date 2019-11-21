@@ -9,7 +9,10 @@
       class="col-lg-12"
       style="text-align: -webkit-center; margin: 16px 0 18px"
     >
-      <button class="button user-input__button button_theme_success">
+      <button
+        v-scroll-to="'#go'"
+        class="button user-input__button button_theme_success"
+      >
         No more reading - let's go!
       </button>
     </div>

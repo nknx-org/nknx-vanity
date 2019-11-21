@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'NKNxVanity',
     meta: [
       { charset: 'utf-8' },
       {
@@ -19,10 +19,52 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content:
+          'NKNxVanity is a do-it-yourself vanitizing service for NKN wallets. Create a cool looking wallet address with one click.'
+      },
+      { name: 'og:title', content: 'NKNxVanity' },
+      {
+        name: 'og:description',
+        content:
+          'NKNxVanity is a do-it-yourself vanitizing service for NKN wallets. Create a cool looking wallet address with one click.'
+      },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:url', content: 'https://vanity.nknx.org' },
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:site', content: '@nknX_org' },
+      { name: 'twitter:title', content: 'NKNxVanity' },
+      {
+        name: 'twitter:description',
+        content:
+          'NKNxVanity is a do-it-yourself vanitizing service for NKN wallets. Create a cool looking wallet address with one click.'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -57,6 +99,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    'vue-scrollto/nuxt',
     '@nuxtjs/style-resources',
     'nuxt-svg-loader',
     '@nuxtjs/axios',

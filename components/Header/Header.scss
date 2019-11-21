@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  height: 100vh;
+  height: 200px;
 
   &__title {
     opacity: 0.5;
@@ -32,7 +32,7 @@
     overflow: hidden;
     height: 64px;
     position: relative;
-    font-size: $h1-fz;
+    font-size: $h2-fz;
     line-height: 64px;
     color: $white;
     margin-top: $padding-micro;

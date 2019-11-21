@@ -1,5 +1,5 @@
 <template>
-  <Card width="half" class="user-input">
+  <Card id="go" width="half" class="user-input">
     <div :class="['error-text', inputError ? 'error-text_visible' : null]">
       {{ $t('genErrorDescr') }}
     </div>
