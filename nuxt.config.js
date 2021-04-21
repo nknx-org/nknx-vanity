@@ -82,12 +82,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~plugins/i18n',
-    '~plugins/v-tooltip',
-    '~plugins/filters',
-    'plugins/nknVanity'
-  ],
+  plugins: ['~plugins/v-tooltip', '~plugins/filters', 'plugins/nknVanity'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -122,21 +117,6 @@ export default {
           'zh-cn'
         ],
         defaultLocale: 'en'
-      }
-    ],
-    [
-      'nuxt-i18n',
-      {
-        defaultLocale: 'en',
-        locales: [
-          {
-            code: 'en',
-            iso: 'en-US',
-            file: 'en-US.js'
-          }
-        ],
-        lazy: true,
-        langDir: 'lang/'
       }
     ]
   ],

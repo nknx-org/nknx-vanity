@@ -1,27 +1,25 @@
 <template>
   <Card width="half" class="statistics">
     <div class="statistics__item">
-      {{ $t('difficulty') }}:
+      Difficulty:
       <span v-text="formatNum(difficulty)" class="statistics__output">1</span>
     </div>
     <div class="statistics__item">
-      {{ $t('generated') }}:
-      <span class="statistics__output"
-        >{{ formatNum(count) }} {{ $t('addresses') }}</span
-      >
+      Generated:
+      <span class="statistics__output">{{ formatNum(count) }} Addresses</span>
     </div>
     <div class="statistics__item">
-      {{ $t('speed') }}:
-      <span class="statistics__output">{{ speed }} {{ $t('addrPerSec') }}</span>
+      Speed:
+      <span class="statistics__output">{{ speed }} Addresses/s</span>
     </div>
     <div class="statistics__item">
-      {{ $t('status') }}:
-      <span class="statistics__output">{{ $t(status) }}</span>
+      Status:
+      <span class="statistics__output">{{ status }}</span>
     </div>
 
     <!--Probability-->
     <div class="statistics__item">
-      {{ $t('probability') }}:
+      Probability:
       <div class="statistics__probability">
         <div class="statistics__probability-wrapper">
           <div

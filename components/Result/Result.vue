@@ -12,16 +12,16 @@
     </div>
     <div class="result__info">
       <div class="result__info-item">
-        <span class="result__info-heading">{{ $t('address') }}:</span>
+        <span class="result__info-heading">Address:</span>
         {{ result.address }}
       </div>
       <div class="result__info-item">
-        <span class="result__info-heading">{{ $t('privateKey') }}:</span>
+        <span class="result__info-heading">Private Key:</span>
         <span
           :class="reveal ? 'result__info-pk' : 'result__info-reveal'"
           v-if="ready"
           @click="reveal = true"
-          v-text="reveal ? result.pk : $t('clickToReveal')"
+          v-text="reveal ? result.pk : 'Click to reveal'"
         >
         </span>
       </div>
@@ -31,7 +31,7 @@
       :click="saveWallet"
       class="result__button"
       theme="success"
-      >{{ $t('downloadWallet') }}</Button
+      >Download Wallet</Button
     >
   </Card>
 </template>

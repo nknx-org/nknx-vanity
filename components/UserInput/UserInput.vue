@@ -1,15 +1,15 @@
 <template>
   <Card id="go" width="half" class="user-input">
     <div :class="['error-text', inputError ? 'error-text_visible' : null]">
-      {{ $t('genErrorDescr') }}
+      The wallet format doesn't meet the NKN specification.
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12">
         <label class="form__label">
-          {{ $t('walletName') }}
+          Wallet Name
           <span
             v-tooltip="{
-              content: $t('walletNameTooltip'),
+              content: 'Enter the digits you want to have in your wallet.',
               placement: 'top-center',
               offset: 5
             }"
@@ -17,7 +17,7 @@
           />
           <div class="form__input">
             <input
-              :placeholder="$t('enterWalletName')"
+              :placeholder="'Enter wallet name'"
               v-model="name"
               :disabled="running"
               :class="inputError ? 'form__controller_error' : null"
@@ -29,10 +29,10 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
         <label class="form__label">
-          {{ $t('walletPassword') }}
+          Wallet Password
           <span
             v-tooltip="{
-              content: $t('walletPasswordTooltip'),
+              content: 'Enter a password for your wallet file.',
               placement: 'top-center',
               offset: 5
             }"
@@ -40,7 +40,7 @@
           />
           <div class="form__input">
             <input
-              :placeholder="$t('enterWalletPassword')"
+              :placeholder="'Enter wallet password'"
               v-model="password"
               :disabled="running"
               :type="!passwordVisible ? 'password' : 'text'"
@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="user-input__example">
-      {{ $t('example') }}:
+      Example:
       <span v-text="example.random"></span>
     </div>
     <div class="user-input__config">
@@ -86,11 +86,11 @@
               value="+"
             />
             <span class="user-input__threads-descr"
-              >{{ threads }} {{ $t('threads') }}
+              >{{ threads }} Threads
               <span
                 v-if="threads === cores"
                 v-tooltip="{
-                  content: $t('threadsRecommendedTooltip'),
+                  content: 'Recommended number of threads',
                   placement: 'top-center',
                   offset: 5
                 }"
@@ -99,7 +99,8 @@
               <span
                 v-if="threads > cores"
                 v-tooltip="{
-                  content: $t('threadsWarningTooltip'),
+                  content:
+                    'Number of threads exceeds the number you have available on this PC',
                   placement: 'top-center',
                   offset: 5
                 }"
@@ -110,7 +111,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="user-input__suffix">
-            <span>{{ $t('prefix') }}</span>
+            <span>Prefix</span>
             <label class="user-input__suffix-switch">
               <input
                 v-model="suffix"
@@ -123,7 +124,7 @@
                 class="user-input__suffix-slider"
               ></span>
             </label>
-            <span>{{ $t('suffix') }}</span>
+            <span>Suffix</span>
           </div>
         </div>
       </div>
@@ -136,7 +137,7 @@
           :full="true"
           theme="success"
           class="user-input__button"
-          >{{ $t('generate') }}</Button
+          >Generate</Button
         >
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6">
@@ -146,7 +147,7 @@
           :disabled="!running"
           theme="error"
           class="user-input__button"
-          >{{ $t('stop') }}</Button
+          >Stop</Button
         >
       </div>
     </div>

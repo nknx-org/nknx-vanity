@@ -162,7 +162,7 @@ export default {
       this.result.wallet = wallet
       this.result.address = wallet.Address
       this.result.pk = pk
-      this.status = 'addressFound'
+      this.status = 'address found!'
     },
     clearResult() {
       this.result.address = ''

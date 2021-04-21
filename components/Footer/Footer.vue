@@ -6,7 +6,11 @@
           <div class="footer__description-title">
             <Logo class="footer__description-logo" />New Kind of Network
           </div>
-          <div class="footer__description-text">{{ $t('nknDescription') }}</div>
+          <div class="footer__description-text">
+            NKN is a New Kind of Network, a Cellular Automata powered,
+            decentralized data relay network built on Blockchain & incentivized
+            by a native token.
+          </div>
           <div class="footer__description-socials">
             <a
               href="https://twitter.com/NKN_ORG"
@@ -44,23 +48,23 @@
           :key="nav.title"
           class="footer__nav-item"
         >
-          <div class="footer__nav-title">{{ $t(nav.title) }}</div>
+          <div class="footer__nav-title">{{ nav.title }}</div>
           <a
             v-for="link in nav.links"
             :key="link.title"
             :href="link.url"
             class="footer__nav-link"
             target="_blank"
-            >{{ $t(link.title) }}</a
+            >{{ link.title }}</a
           >
         </div>
       </div>
       <div class="footer__bottom">
         <div class="footer__bottom-item">
-          © NKNxVanity 2019. {{ $t('allRightsReserved') }}.
+          © NKNxVanity 2019. All Rights Reserved.
         </div>
         <div class="footer__bottom-item">
-          {{ $t('donate') }}: NKNXXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg
+          {{ Donate: NKNXXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg
         </div>
         <div class="footer__bottom-item">
           Coded with
@@ -97,15 +101,15 @@ export default {
           title: 'nkn',
           links: [
             {
-              title: 'about',
+              title: 'About',
               url: 'https://www.nkn.org/#/about'
             },
             {
-              title: 'officialWebsite',
+              title: 'Official Website',
               url: 'https://www.nkn.org/'
             },
             {
-              title: 'nknWallet',
+              title: 'NKN Wallet',
               url: 'https://wallet.nkn.org/'
             }
           ]
@@ -114,19 +118,19 @@ export default {
           title: 'nknxEcosystem',
           links: [
             {
-              title: 'nknxNodeManager',
+              title: 'NKNx Ecosystem',
               url: 'https://www.nknx.org'
             },
             {
-              title: 'nknxExplorer',
-              url: 'https://explorer.nknx.org'
+              title: 'nScan',
+              url: 'https://nscan.io'
             },
             {
-              title: 'nknxVault',
-              url: 'https://vault.nknx.org'
+              title: 'Vault',
+              url: 'https://vault.rule110.io'
             },
             {
-              title: 'nknxVanity',
+              title: 'NKNx Vanity',
               url: 'https://vanity.nknx.org'
             }
           ]
