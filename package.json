@@ -20,7 +20,7 @@
   "dependencies": {
     "bs58": "^4.0.1",
     "file-saver": "^2.0.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "nkn-wallet": "^0.4.7",
     "nuxt-clipboard2": "^0.2.1",
     "v-tooltip": "^2.0.2",
