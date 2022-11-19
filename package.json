@@ -41,7 +41,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "husky": "^3.0.9",
     "node-sass": "^4.13.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.3.0",
     "nuxt-svg-loader": "^1.0.1",
     "prettier": "^1.16.4",
